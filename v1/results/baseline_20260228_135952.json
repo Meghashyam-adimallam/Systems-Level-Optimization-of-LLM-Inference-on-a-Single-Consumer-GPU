@@ -1,0 +1,12 @@
+{
+  "experiment": "baseline",
+  "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "device": "cuda",
+  "prompt": "Hello, how are you?",
+  "max_new_tokens": 32,
+  "latency_sec": 1.8684,
+  "tokens_generated": 32,
+  "tokens_per_sec": 17.13,
+  "gpu_memory_gb": 2.06,
+  "timestamp": "20260228_135952"
+}

@@ -1,0 +1,5 @@
+# Optional production-backend comparison.
+# Install this only on the CUDA GPU machine; vLLM may not install on macOS CPU-only.
+
+-r requirements.txt
+vllm>=0.4.0

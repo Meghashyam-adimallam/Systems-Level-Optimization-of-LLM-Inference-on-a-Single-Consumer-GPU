@@ -11,6 +11,7 @@ build/
 # IDE
 .idea/
 .vscode/
+.cursor/
 *.swp
 *.swo
 
@@ -24,3 +25,18 @@ build/
 # OS
 .DS_Store
 Thumbs.db
+
+# Personal notes (not part of the benchmark repo)
+_private/
+.mplconfig/
+
+# Scratch output from new local runs (root only; tier data lives in v1/v2/v3/results/)
+/results/
+
+# Downloaded scratch zips (data lives in v2/results, v3/results)
+results_and_report*.zip
+zephyr_profiles*.zip
+results_profiles.zip
+
+# Chrome trace > GitHub 100MB limit (summary + kernel_table kept in repo)
+v3/results/profiles/chrome_trace_zephyr-7b_bs4_tok32.json

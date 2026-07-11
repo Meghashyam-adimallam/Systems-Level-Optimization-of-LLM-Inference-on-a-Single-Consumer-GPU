@@ -1,0 +1,9 @@
+{
+  "num_requests": 30,
+  "concurrency": 5,
+  "wall_clock_sec": 56.856700600001204,
+  "req_per_sec": 0.527642295163349,
+  "p50_latency_sec": 9.41716285000075,
+  "p95_latency_sec": 12.269919475000643,
+  "tokens_per_sec": 27.68363241957038
+}

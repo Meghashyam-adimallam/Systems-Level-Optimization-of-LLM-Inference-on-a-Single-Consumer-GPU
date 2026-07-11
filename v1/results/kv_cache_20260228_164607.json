@@ -1,0 +1,52 @@
+{
+  "prompt": "Hello, how are you?",
+  "token_lengths": [
+    32,
+    64,
+    128
+  ],
+  "by_tokens": {
+    "32": {
+      "use_cache_true": {
+        "use_cache": true,
+        "latency_sec": 1.093,
+        "tokens_generated": 32,
+        "tokens_per_sec": 29.28
+      },
+      "use_cache_false": {
+        "use_cache": false,
+        "latency_sec": 1.2709,
+        "tokens_generated": 32,
+        "tokens_per_sec": 25.18
+      }
+    },
+    "64": {
+      "use_cache_true": {
+        "use_cache": true,
+        "latency_sec": 2.2761,
+        "tokens_generated": 64,
+        "tokens_per_sec": 28.12
+      },
+      "use_cache_false": {
+        "use_cache": false,
+        "latency_sec": 2.9124,
+        "tokens_generated": 64,
+        "tokens_per_sec": 21.98
+      }
+    },
+    "128": {
+      "use_cache_true": {
+        "use_cache": true,
+        "latency_sec": 4.4263,
+        "tokens_generated": 128,
+        "tokens_per_sec": 28.92
+      },
+      "use_cache_false": {
+        "use_cache": false,
+        "latency_sec": 6.4061,
+        "tokens_generated": 128,
+        "tokens_per_sec": 19.98
+      }
+    }
+  }
+}

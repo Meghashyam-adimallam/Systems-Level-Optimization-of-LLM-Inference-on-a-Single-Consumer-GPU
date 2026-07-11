@@ -1,0 +1,6 @@
+# GitHub language stats — focus on benchmark code, not generated HTML/docs
+*.html linguist-vendored=true
+**/chrome_trace*.json linguist-generated=true
+combined/ linguist-documentation=true
+docs/project_flow.html linguist-vendored=true
+v1/report/benchmark_report.html linguist-vendored=true

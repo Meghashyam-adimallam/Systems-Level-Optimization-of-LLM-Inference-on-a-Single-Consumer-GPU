@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LLM Inference — Three-Tier Benchmark Report</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 1100px; margin: 2rem auto; padding: 0 1rem; color: #222; }
+    h1 { font-size: 1.5rem; }
+    h2 { margin-top: 2rem; border-bottom: 1px solid #ccc; padding-bottom: 0.3rem; }
+    h3 { margin-top: 1.5rem; color: #444; }
+    img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; margin: 1rem 0; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
+    th, td { border: 1px solid #ccc; padding: 0.45rem 0.6rem; text-align: left; }
+    th { background: #f4f4f4; }
+    .best { font-weight: bold; color: #c64600; }
+    .meta { color: #555; font-size: 0.9rem; }
+    .tier-box { background: #fafafa; padding: 1rem; border-radius: 6px; margin: 1rem 0; }
+  </style>
+</head>
+<body>
+  <h1>Systems-Level Optimization of LLM Inference — Three-Tier Report</h1>
+  <p class="meta">Separate results per tier — not mixed across hardware or model.</p>
+
+  <h2>Combined achievements</h2>
+  <img src="tier_achievements_summary.png" alt="All tiers medium-load throughput">
+  <img src="tier_progression.png" alt="Throughput progression across tiers">
+
+  <div class="tier-box">
+    <h2>v1 — RTX 4060, TinyLlama 1.1B</h2>
+    <p class="meta">Hand-rolled servers · load generator JSON · representative runs</p>
+    <table>
+      <tr><th>Strategy</th><th>Medium req/s</th><th>Medium p50</th><th>Achievement</th></tr>
+      <tr><td>Baseline</td><td>0.57</td><td>8.32s</td><td>—</td></tr>
+      <tr><td>Batched</td><td>0.71</td><td>6.21s</td><td>+25% req/s</td></tr>
+      <tr><td class="best">Dynamic</td><td class="best">1.73</td><td class="best">2.23s</td><td class="best">~3× vs baseline</td></tr>
+    </table>
+    <img src="../v1/report/benchmark_comparison.png" alt="v1 benchmark comparison">
+    <img src="../v1/report/kv_cache_comparison.png" alt="v1 KV cache">
+  </div>
+
+  <div class="tier-box">
+    <h2>v2 — A100, TinyLlama 1.1B</h2>
+    <p class="meta">3 runs per config · mean ± std · GPU CSV traces</p>
+    <table>
+      <tr><th>Strategy</th><th>Medium req/s</th><th>Medium p50</th><th>GPU util (CSV)</th></tr>
+      <tr><td>Baseline</td><td>1.77 ± 0.49</td><td>2.70s</td><td>~27%</td></tr>
+      <tr><td>Batched</td><td>2.29 ± 0.24</td><td>1.97s</td><td>~27%</td></tr>
+      <tr><td class="best">Dynamic</td><td class="best">2.78 ± 0.02</td><td class="best">1.96s</td><td>~28%</td></tr>
+    </table>
+    <img src="../v2/report/benchmark_comparison.png" alt="v2 benchmark comparison">
+  </div>
+
+  <div class="tier-box">
+    <h2>v3 — A100, Zephyr-7B (vLLM vs SLA)</h2>
+    <p class="meta">vLLM vs SLA scheduler · 2 runs · long_context load</p>
+    <table>
+      <tr><th>Strategy</th><th>Medium req/s</th><th>Medium p50</th><th>Medium p99</th><th>GPU util</th></tr>
+      <tr><td class="best">vLLM</td><td class="best">5.65</td><td class="best">0.88s</td><td>0.89s</td><td>~90%</td></tr>
+      <tr><td>SLA + vLLM</td><td>1.19</td><td>4.25s</td><td>4.29s</td><td>~91%</td></tr>
+    </table>
+    <img src="../v3/report/benchmark_comparison.png" alt="v3 benchmark comparison">
+  </div>
+
+  <p class="meta">Regenerate charts: <code>python scripts/generate_tier_charts.py</code></p>
+</body>
+</html>

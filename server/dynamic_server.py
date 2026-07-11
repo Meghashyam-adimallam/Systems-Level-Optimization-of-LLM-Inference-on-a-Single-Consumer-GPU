@@ -89,10 +89,9 @@ def _run_batch_sync(prompts: List[str], max_new_tokens: int, temperature: float 
             temperature=temperature if temperature > 0 else 0.7,
             pad_token_id=tokenizer.pad_token_id,
         )
-    input_lengths = attention_mask.sum(dim=1)
     results = []
     for i in range(len(prompts)):
-        start = input_lengths[i].item()
+        start = input_ids.shape[1]
         generated = outputs[i, start:]
         text = tokenizer.decode(generated, skip_special_tokens=True)
         results.append(GenerateResponse(text=text.strip(), prompt=prompts[i], num_tokens=len(generated)))
